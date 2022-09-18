@@ -9,7 +9,7 @@ const db = require("../models");
 const Billing = db.billing;
 
 var cfConfig = new CFConfig(
-  CFEnvironment.SANDBOX,
+  CFEnvironment.PRODUCTION,
   "2022-01-01",
   process.env.CASHFREE_APP_ID,
   process.env.CASHFREE_SECRET_KEY
