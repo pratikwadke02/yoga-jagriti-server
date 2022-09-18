@@ -41,7 +41,7 @@ exports.createOrder = async (req, res) => {
   try {
     var apiInstance = new CFPaymentGateway();
 
-    var result = await apiInstance.orderCreate(cfConfig, cFOrderRequest);
+    var result = await apiInstance.orderCreate(cfConfig, cfHeader, cFOrderRequest);
     if (result != null) {
       console.log(result?.cfOrder?.orderToken);
       console.log(result?.cfOrder?.orderId);
