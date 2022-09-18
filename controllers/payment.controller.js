@@ -22,7 +22,7 @@ var cfHeader = new CFHeader(
 
 exports.createOrder = async (req, res) => {
   var customerDetails = new CFCustomerDetails();
-  const billing = await Billing.create(req.body);
+  await Billing.create(req.body);
   customerDetails.customerId = (req.body.userId).toString();
   customerDetails.customerName = req.body.firstName + " " + req.body.lastName;
   customerDetails.customerPhone = req.body.phone;
@@ -30,7 +30,7 @@ exports.createOrder = async (req, res) => {
   var d = {};
   d["order_tag_01"] = "TESTING IT";
   var orderMeta = new CFOrderMeta();
-  orderMeta.returnUrl = `http://localhost:3000/shop?cf_id={order_id}&cf_token={order_token}`;
+  orderMeta.returnUrl = `https://yogajagriti.com/shop?cf_id={order_id}&cf_token={order_token}`;
   var cFOrderRequest = new CFOrderRequest();
   cFOrderRequest.orderAmount = req.body.total;
   cFOrderRequest.orderCurrency = "INR";
@@ -41,7 +41,7 @@ exports.createOrder = async (req, res) => {
   try {
     var apiInstance = new CFPaymentGateway();
 
-    var result = await apiInstance.orderCreate(cfConfig, cfHeader, cFOrderRequest);
+    var result = await apiInstance.orderCreate(cfConfig, cFOrderRequest);
     if (result != null) {
       console.log(result?.cfOrder?.orderToken);
       console.log(result?.cfOrder?.orderId);
