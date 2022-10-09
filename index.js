@@ -15,7 +15,6 @@ db.sequelize.sync().then(() => {
 var corsOptions = {
     origin: "https://yogajagriti.com",
     origin: "http://localhost:3000",
-    origin: "http://localhost:3001",
 };
 
 app.use(bodyParser.json()); 
